@@ -10,7 +10,7 @@
     <title>{{ config('app.name', 'OsCell') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('site/Jquery.js') }}"></script>
+    <script src="{{ asset('site/jquery.js') }}"></script>
     <script src="{{ asset('site/bootstrap.js') }}"></script>
 
     <!-- Fonts -->
@@ -22,7 +22,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-default shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'OsCell') }}
@@ -78,4 +78,19 @@
         </main>
     </div>
 </body>
+<style>
+
+    .nav-link {
+        font-family: 'Nunito', sans-serif;
+        font-size: 22px;
+        color: black;
+    }
+    .navbar-brand{
+        font-family: 'Nunito', sans-serif;
+        font-size: 40px;
+        text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff,
+                1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+    }
+
+</style>
 </html>
