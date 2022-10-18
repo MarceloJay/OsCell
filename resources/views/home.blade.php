@@ -1,35 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
+@include('layouts.navigation') 
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
-        </div>
+    <div class="btn-group">
+        <button id="create"class="btn btn-outline-success btn-lg" type="button">Criar Order</button>
+        <button id="create"class="btn btn-outline-primary btn-lg" type="button">Pesquisar Order</button>
+    </div>
+    <div class="btn-group">
+        <button id="editar"class="btn btn-outline-secondary btn-lg" type="button">Editar Order</button>
+        <button id="deletar"class="btn btn-outline-danger btn-lg" type="button">Apagar Order</button>
     </div>
 </div>
+
 <style>
-    html, body {          
-                /* background: var(--background-cell); */
-                background-size: 5% !important;                
-                background-color: var(--background-default);
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 900;
-                height: 100vh;
-                margin: 0;
-            }
+    html, body {
+        background-color: var(--background-default);
+    }
+    .container {
+        margin-left: 310px;
+        margin-top: -500px;
+        /* width: 100%; */
+        /* display: inline; */
+        /* margin-top: -200; */
+    }
+    /* .btn-order {
+        margin-left: 50px;
+        margin-top: -960px;
+    } */
+    .btn {
+        font-size: 30px;
+        float: right;
+        width: 300px;
+        height: 117px;
+        margin-bottom: 30px;
+        margin-right: 30px;
+    }
 </style>
 @endsection
