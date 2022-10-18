@@ -72,6 +72,7 @@
         border-radius: 0;
         margin-bottom: -20px;
         box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        
     }
 
     .navbar-btn {
@@ -96,9 +97,11 @@
     }
 
     #sidebar {
-        margin-left: 10px;
-        min-width: 300px;
-        max-width: 300px;
+        margin-left: 15px;
+        min-width: 350px;
+        max-width: 350px;
+        min-height: 800px;
+        max-height: 800px;
         background: #001f36;
         color: #fff;
         transition: all 0.3s;
@@ -122,12 +125,16 @@
     #sidebar ul p {
         color: #fff;
         padding: 10px;
+        margin-left: 15px;
+        margin-right: 15px;
     }
 
     #sidebar ul li a {
         padding: 10px;
         font-size: 1.1em;
         display: block;
+        margin-left: 15px;
+        margin-right: 15px;
     }
 
     #sidebar ul li a:hover {
@@ -159,8 +166,12 @@
         background: #1c5560;
     }
 
-    ul.CTAs {
+    ul.CTAs {     
         padding: 20px;
+        position:absolute; 
+        top:80%;
+        left:10%;
+        transform: translate(-50%, -50%);
     }
 
     ul.CTAs a {
@@ -168,7 +179,9 @@
         font-size: 0.9em !important;
         display: block;
         border-radius: 5px;
-        margin-bottom: 5px;
+        margin-bottom: 15px;
+        min-width: 250px;
+        max-width: 250px;
     }
 
     a.download {
