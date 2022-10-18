@@ -23,7 +23,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-default shadow-sm">
-            <a class="navbar-brand" href="{{ url('/') }}">
+            <a class="navbar-brand" href="{{ url('home') }}">
                 {{ config('app.name', 'OsCell') }}
             </a>    
             <div class="container">
@@ -92,7 +92,7 @@
         /* margin-top: 600px; */
     }
     .navbar-brand {
-        margin-left: 60px;
+        margin-left: 110px;
         font-family: 'Nunito', sans-serif;
         font-size: 40px;
         text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff,

@@ -5,12 +5,20 @@
 <div class="container">
 
     <div class="btn-group ">
-        <button id="create"class="btn btn-outline-success btn-lg" type="button">Criar Order</button>
-        <button id="create"class="btn btn-outline-primary btn-lg" type="button">Pesquisar Order</button>
+        <a class="nav-link" href="{{ route('registration', [$role_id = 1.1]) }}">
+            <button id="create"class="btn btn-outline-success btn-lg" type="button">Criar Order</button>
+        </a>
+        <a class="nav-link" href="{{ route('editOrder') }}">    
+            <button id="create"class="btn btn-outline-primary btn-lg" type="button">Pesquisar Order</button>
+        </a>
     </div>
     <div class="btn-group">
-        <button id="editar"class="btn btn-outline-secondary btn-lg" type="button">Editar Order</button>
-        <button id="deletar"class="btn btn-outline-danger btn-lg" type="button">Apagar Order</button>
+        <a class="nav-link" href="{{ route('editOrder') }}">
+            <button id="editar"class="btn btn-outline-secondary btn-lg" type="button">Editar Order</button>
+        </a>
+        <a class="nav-link" href="{{ route('editOrder') }}">
+            <button id="deletar"class="btn btn-outline-danger btn-lg" type="button">Apagar Order</button>
+        </a>
     </div>
 </div>
 
