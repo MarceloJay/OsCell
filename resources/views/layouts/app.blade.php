@@ -23,10 +23,11 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-default shadow-sm">
+            <a class="navbar-brand" href="{{ url('/') }}">
+                {{ config('app.name', 'OsCell') }}
+            </a>    
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'OsCell') }}
-                </a>
+                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -79,18 +80,22 @@
     </div>
 </body>
 <style>
-
-    .nav-link {
+    #app {
+        width: 100%;
+    }
+    .nav-link .navbarDropdown {
         font-family: 'Nunito', sans-serif;
         font-size: 22px;
         color: black;
     }
-    .navbar-brand{
+    .navbar-brand {
+        margin-left: 60px;
         font-family: 'Nunito', sans-serif;
         font-size: 40px;
         text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff,
                 1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
     }
+    
 
 </style>
 </html>
