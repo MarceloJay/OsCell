@@ -61,14 +61,14 @@
             } */
 
             .links > a {
-                color: var(--white);
+                color: var(--gray-dark);
                 font-family: 'Gill Sans';
                 padding: 0 25px;
-                font-size: 13px;
+                font-size: 18px;
                 font-weight: 600;
                 letter-spacing: .1rem;
-                text-decoration: underline;
-                text-transform: uppercase;
+                /* text-decoration: underline; */
+                /* text-transform: uppercase; */
             }
 
             .m-b-md {

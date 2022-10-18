@@ -86,7 +86,10 @@
     .nav-link .navbarDropdown {
         font-family: 'Nunito', sans-serif;
         font-size: 22px;
-        color: black;
+        color: black; 
+    }
+    .nav-item {
+        /* margin-top: 600px; */
     }
     .navbar-brand {
         margin-left: 60px;

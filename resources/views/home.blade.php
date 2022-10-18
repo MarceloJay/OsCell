@@ -4,7 +4,7 @@
 @include('layouts.navigation') 
 <div class="container">
 
-    <div class="btn-group">
+    <div class="btn-group ">
         <button id="create"class="btn btn-outline-success btn-lg" type="button">Criar Order</button>
         <button id="create"class="btn btn-outline-primary btn-lg" type="button">Pesquisar Order</button>
     </div>
@@ -20,10 +20,11 @@
     }
     .container {
         margin-left: 310px;
-        margin-top: -500px;
-        /* width: 100%; */
-        /* display: inline; */
-        /* margin-top: -200; */
+        /* margin-top: -600px; */        
+        position:absolute; 
+        top:30%;
+        left:40%;
+        transform: translate(-50%, -50%);
     }
     /* .btn-order {
         margin-left: 50px;
@@ -35,7 +36,8 @@
         width: 300px;
         height: 117px;
         margin-bottom: 30px;
-        margin-right: 30px;
+        margin-right: 40px;
+        border-radius: 15px;
     }
 </style>
 @endsection
