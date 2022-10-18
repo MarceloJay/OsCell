@@ -116,7 +116,8 @@
         min-height: 50px;
         max-height: 50px;
         min-width: 100px;
-        max-width: 100px; 
+        max-width: 100px;
+        float: right;
     }
     .container {
         margin-left: 310px;
