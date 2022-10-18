@@ -2,16 +2,16 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3>Manager</h3>
+                <h3>Gerenciar</h3>
             </div>
 
             <ul class="list-unstyled components">
-                <p>Dashboard</p>
+                <p>Painel de Controle</p>
                 <li class="active">
                     <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Order de Serviços</a>
                     <ul class="collapse list-unstyled" id="homeSubmenu">
                         <li>
-                            <a href="#">Criar Order</a>
+                            <a href="#" class="{{ isset($id) && $id == 1.1 ? 'active' : '' }}">Criar Order</a>
                         </li>
                         <li>
                             <a href="#">Editar Order</a>
