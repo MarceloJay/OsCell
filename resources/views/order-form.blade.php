@@ -5,6 +5,9 @@
 <div class="container">
     <form>
         <div>            
+            <h3 class="text-center">{{ $client['name'] }}</h3>
+        </div> 
+        <div>            
             <h3 class="text-center">Descrição do Aparelho</h3>
         </div>        
         <!-- 2 column grid layout with text inputs for the first and last names -->
@@ -73,11 +76,12 @@
                 </select>
                 <div class="invalid-feedback">Exemplo de feedback invalido para o select</div>
             </div>
-
+            <div>
+                <label >Foto do Aparelho :</label>
+            </div>
             <div class="custom-file">
                 <input type="file" class="custom-file-input" id="validatedCustomFile" required>
                 <label class="custom-file-label" for="validatedCustomFile">Escolher arquivo...</label>
-                <div class="invalid-feedback">Exemplo de feedback inválido para input file</div>
             </div>
         </form>
         
@@ -88,7 +92,7 @@
                     <button type="button" class="btn btn-success">Salvar</button>
                 </div> &nbsp;
                 <div class="btn-group">
-                    <button type="button" class="btn btn-primary">Salvar e Imprimir</button>  
+                    <button id="btn-save" type="button" class="btn btn-primary">Salvar e Imprimir</button>  
                 </div>   
             </div>  
         </div>
@@ -135,5 +139,34 @@
     $(document).ready(function() {
         $('#estado').select2();
     });
+
+    document.getElementById('btn-save').onclick = function() {
+        var name = $("#plan_app").val();
+			
+			var markedCheckbox = document.getElementsByName('check');
+			var ids = [];
+			var counts = [];
+			for (var checkbox of markedCheckbox) {
+				if (checkbox.checked) {					
+					ids.push(checkbox.id.replace('check_',''));	
+				} else {
+					counts.push(checkbox.id.replace('check_',''));	
+				}	
+			}
+
+			$.ajax({
+				headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+				url: 'actionUpdateSave',
+				type: 'POST',
+				data: {counts,ids},
+				success: function (response) {
+					console.log("actionSave response: " + response);
+				},
+				error: function (err){
+					console.log("error:", err);
+				}
+				
+			});
+		}
 </script>   
 @endsection

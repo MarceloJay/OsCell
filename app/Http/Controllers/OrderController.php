@@ -16,11 +16,13 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function createOrder(float $id)
+    public function createOrder(Request $request)
     {
-        // print_r($id);
-        // die();
-        return view('order-form',['id' => $id]);
+        // $request->all();
+        // $client = json_decode(json_encode($client), true);
+        // dd($request);
+
+        return view('order-form',['client' => $request->all()]);
     }
 
      /**
