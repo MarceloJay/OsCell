@@ -5,19 +5,29 @@
 <div class="container">
     <form id="client" method="POST" name="client" action="{{ route('clientSave') }}">
         <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+        <div>
+            <h3 class="text-center">Cliente Cadastrado</h3>
+        </div> 
+        <div class="input-group">
+            <input id="input-name" type="search" name="input-name" class="form-control"placeholder="Search.."/>
+            <button id="search-button" type="button" class="btn btn-primary">
+            <label class="form-label" for="form1">Search</label>
+        </div>
+        <br>
         <div class="row mb-4">        
             <div class="col">
                 <div class="form-outline mb-2">
                     <label class="form-label">Seleciona o Cliente :</label>
                     <select class="custom-select">                        
-                        <option selected>Seleciona o Cliente</option>
+                        <option id="client-select" selected>Seleciona o Cliente</option>
+                        <option value=""></option>
                     </select>           
                 </div>
             </div>
         </div>
         <div>
-            <h3 class="text-center">ou</h3>
-            <h3 class="text-center">Cadastre o cliente</h3>
+            <!-- <h3 class="text-center">ou</h3> -->
+            <h3 class="text-center">Cadastro de Cliente</h3>
         </div>        
         <!-- 2 column grid layout with text inputs for the first and last names -->
         <div class="row mb-4">        
@@ -129,6 +139,13 @@
         left:25%;
         transform: translate(-50%, -50%);
     }
+    .ms-n5 {
+        margin-left: -40px;
+    }
+    #search-button{
+        min-height: 38px;
+        max-height: 38px;
+    }
     #state {
         min-width: 100px;
         max-width: 100px;
@@ -138,48 +155,39 @@
     }
     
 </style> 
+
 <script>
     // $(document).ready(function() {
     //     $('#estado').select2();
     // });
+    
 
-    // document.getElementById('btn-save').onclick = function() {
+    document.getElementById('search-button').onclick = function() {
         
-        // var name = $('#name').val();
-        // var cpf = $('#cpf').val();
-        // var email = $('#email').val();
-        // var phone = $('#phone').val();
-        // var address = $('#address').val();
-        // var city = $('#city').val();
-        // var state = $('#state').val();
-        // var cep = $('#cep').val();
-        // var contact = $('#contact').val();
-        // var client = [name, cpf, email, phone, address, city, state, cep, contact];
-        // console.log(client);
-        // alert(client);
-    //     var client = {
-    //         name: $('#name').val(),
-    //         cpf: $('#cpf').val(),
-    //         email: $('#email').val(),
-    //         phone: $('#phone').val(),
-    //         address: $('#address').val(),
-    //         city: $('#city').val(),
-    //         state: $('#state').val(),
-    //         cep: $('#cep').val(),
-    //         contact: $('#contact').val()
-    //     }
+        var name = $('#input-name').val();
+        
+        alert(name);
 
-    //     $.ajax({
-    //         url: 'clientSave',
-    //         type: 'POST',
-    //         data: {client},
-    //         success: function (response) {
-    //             console.log("clientSave response: " + response);
-    //         },
-    //         error: function (err){
-    //             console.log("error:", err);
-    //         }
-    //     });
+        $.ajax({
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            url: "{{ url('searchClient') }}"  + '/' + name,
+            type: 'GET',
+            data: {name},
+            success: function (response) {
+                console.log("searchClient response: " + response.name);
+                // document.getElementById('search-button').onclick = function() {
+                //     var options = `<option value=""></option>`
+                // }
+                // alert(nameClient);
+                document.getElementById('client-select').textContent = response.name;
+            },
+            error: function (err){
+                console.log("error:", err);
+            }
+        });
+    }
+
+        
     // }
 
 </script>   

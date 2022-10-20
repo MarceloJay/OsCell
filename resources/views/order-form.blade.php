@@ -5,7 +5,7 @@
 <div class="container">
     <form>
         <div>            
-            <h3 class="text-center">{{ $client['name'] }}</h3>
+            <h1 class="text-center">{{ $client['name'] }}</h1>
         </div> 
         <div>            
             <h3 class="text-center">Descrição do Aparelho</h3>
@@ -21,6 +21,12 @@
             <div class="col">
             <div class="form-outline">
                 <label class="form-label" for="form3Example2"> Modelo :</label>
+                <input type="text" id="form3Example2" class="form-control" />            
+            </div>
+            </div>
+            <div class="col">
+            <div class="form-outline">
+                <label class="form-label" for="form3Example2"> Número de Série :</label>
                 <input type="text" id="form3Example2" class="form-control" />            
             </div>
             </div>
