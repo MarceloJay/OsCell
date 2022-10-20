@@ -28,3 +28,10 @@ Route::get('/edit-order', 'OrderController@editOrder')->name('editOrder');
 Route::get('/registration/{id}', 'ClientController@registration')->name('registration');
 // Cliente Save ;
 Route::post('/clientSave', 'ClientController@clientSave')->name('clientSave');
+// Search Client ;
+Route::get('searchClient/{name}', 'ClientController@searchClient')->name('searchClient');
+
+// Route::prefix('/registration')->group(function () {
+//     Route::get('', 'ClientController@registration')->name('registration');
+//     Route::get('/searchClient/{name}', 'ClientController@searchClient')->name('searchClient');
+// });
