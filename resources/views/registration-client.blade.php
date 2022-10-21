@@ -9,7 +9,7 @@
             <h3 class="text-center">Cliente Cadastrado</h3>
         </div> 
         <div class="input-group">
-            <input id="input-name" type="search" name="input-name" class="form-control"placeholder="Search.."/>
+            <input id="input-name" type="search" class="form-control"placeholder="Search.."/>
             <button id="search-button" type="button" class="btn btn-primary">
             <label class="form-label" for="form1">Search</label>
         </div>
@@ -166,7 +166,7 @@
         
         var name = $('#input-name').val();
         
-        alert(name);
+        // alert(name);
 
         $.ajax({
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
@@ -178,8 +178,9 @@
                 // document.getElementById('search-button').onclick = function() {
                 //     var options = `<option value=""></option>`
                 // }
-                // alert(nameClient);
+                // alert(nameClient);name
                 document.getElementById('client-select').textContent = response.name;
+                document.getElementById('name').value = response.name;                
             },
             error: function (err){
                 console.log("error:", err);

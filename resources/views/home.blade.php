@@ -17,7 +17,7 @@
             <button id="editar"class="btn btn-outline-secondary btn-lg" type="button">Editar Order</button>
         </a>
         <a class="nav-link" href="{{ route('editOrder') }}">
-            <button id="deletar"class="btn btn-outline-danger btn-lg" type="button">Apagar Order</button>
+            <button id="deletar"class="btn btn-outline-danger btn-lg" type="button">Finalizar Order</button>
         </a>
     </div>
 </div>

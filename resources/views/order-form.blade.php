@@ -4,9 +4,11 @@
 @include('layouts.navigation') 
 <div class="container">
     <form>
-        <div>            
+        <div id="client-selected">
+            <label class="client-selected" for="client-selected"> Cliente :</label>            
             <h1 class="text-center">{{ $client['name'] }}</h1>
         </div> 
+        <br>
         <div>            
             <h3 class="text-center">Descrição do Aparelho</h3>
         </div>        
@@ -116,11 +118,9 @@
         min-width: 150px;
         max-width: 150px; 
         float: right; 
-        /* margin-left:30px;        */
     }
     .container {
         margin-left: 310px;
-        /* margin-top: -600px; */ 
         min-width: 700px;
         max-width: 700px;       
         position:absolute; 
@@ -128,16 +128,24 @@
         left:25%;
         transform: translate(-50%, -50%);
     }
+    #client-selected {
+        margin-top: 60px;
+        border-radius: 10px;
+        border: 2px solid;
+        min-height: 90px;
+        max-height: 90px;
+        color: #001f36;
+        opacity: 0.5;
+    }
     #description {
-        min-height: 150px;
-        max-height: 150px;
+        min-height: 120px;
+        max-height: 120px;
     }
     #estado {
         min-width: 100px;
         max-width: 100px;
         min-height: 40px;
         max-height: 40px;
-        /* margin-right: 0px; */
     }
     
 </style> 
