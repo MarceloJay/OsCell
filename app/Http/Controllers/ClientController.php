@@ -35,15 +35,15 @@ class ClientController extends Controller
 
     public function clientSave(Request $request) {
 
-        $data =$request->except('_token');
-        if ($data['document'] == null) {
+        $data = $request->except('_token');
+        $document = $data['document'];
+        if (DB::table('client')->where('document', $document)->count() == 0) {
+            $id = DB::table('client')->insertGetId($data);
+            $client = DB::table('client')->find($id);
+            $client = json_decode(json_encode($client), true);
+        } else {
             $client = $data;
-
-            return redirect()->route('createOrder', $client);
-        }
-        $id = DB::table('client')->insertGetId($data);
-        $client = DB::table('client')->find($id);
-        $client = json_decode(json_encode($client), true);
+        }        
 
         return redirect()->route('createOrder', $client);
     }

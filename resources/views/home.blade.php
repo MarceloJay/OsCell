@@ -27,17 +27,12 @@
         background-color: var(--background-default);
     }
     .container {
-        margin-left: 310px;
-        /* margin-top: -600px; */        
+        margin-left: 310px;      
         position:absolute; 
         top:30%;
         left:40%;
         transform: translate(-50%, -50%);
     }
-    /* .btn-order {
-        margin-left: 50px;
-        margin-top: -960px;
-    } */
     .btn {
         font-size: 30px;
         float: right;

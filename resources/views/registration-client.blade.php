@@ -40,7 +40,7 @@
             <div class="col">
             <div class="form-outline">
                 <label class="form-label" for="form3Example2"> Número de CPF ou RG :</label>
-                <input type="text" id="cpf" name="document" class="form-control" />            
+                <input type="text" id="document" name="document" class="form-control" />            
             </div>
             </div>
         </div>
@@ -174,13 +174,22 @@
             type: 'GET',
             data: {name},
             success: function (response) {
-                console.log("searchClient response: " + response.name);
+                console.log("searchClient response: " + response.document);
                 // document.getElementById('search-button').onclick = function() {
                 //     var options = `<option value=""></option>`
                 // }
                 // alert(nameClient);name
                 document.getElementById('client-select').textContent = response.name;
-                document.getElementById('name').value = response.name;                
+                document.getElementById('name').value = response.name;
+                document.getElementById('document').value = response.document;
+                document.getElementById('email').value = response.email;
+                document.getElementById('phone').value = response.phone;
+                document.getElementById('contact').value = response.contact;
+                document.getElementById('address').value = response.address;
+                document.getElementById('city').value = response.city;
+                document.getElementById('state').value = response.state;
+                document.getElementById('cep').value = response.cep;  
+                              
             },
             error: function (err){
                 console.log("error:", err);
