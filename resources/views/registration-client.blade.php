@@ -9,7 +9,7 @@
             <h3 class="text-center">Cliente Cadastrado</h3>
         </div> 
         <div class="input-group">
-            <input id="input-name" type="search" name="input-name" class="form-control"placeholder="Search.."/>
+            <input id="input-name" type="search" class="form-control"placeholder="Search.."/>
             <button id="search-button" type="button" class="btn btn-primary">
             <label class="form-label" for="form1">Search</label>
         </div>
@@ -40,7 +40,7 @@
             <div class="col">
             <div class="form-outline">
                 <label class="form-label" for="form3Example2"> Número de CPF ou RG :</label>
-                <input type="text" id="cpf" name="document" class="form-control" />            
+                <input type="text" id="document" name="document" class="form-control" />            
             </div>
             </div>
         </div>
@@ -166,7 +166,7 @@
         
         var name = $('#input-name').val();
         
-        alert(name);
+        // alert(name);
 
         $.ajax({
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
@@ -174,12 +174,22 @@
             type: 'GET',
             data: {name},
             success: function (response) {
-                console.log("searchClient response: " + response.name);
+                console.log("searchClient response: " + response.document);
                 // document.getElementById('search-button').onclick = function() {
                 //     var options = `<option value=""></option>`
                 // }
-                // alert(nameClient);
+                // alert(nameClient);name
                 document.getElementById('client-select').textContent = response.name;
+                document.getElementById('name').value = response.name;
+                document.getElementById('document').value = response.document;
+                document.getElementById('email').value = response.email;
+                document.getElementById('phone').value = response.phone;
+                document.getElementById('contact').value = response.contact;
+                document.getElementById('address').value = response.address;
+                document.getElementById('city').value = response.city;
+                document.getElementById('state').value = response.state;
+                document.getElementById('cep').value = response.cep;  
+                              
             },
             error: function (err){
                 console.log("error:", err);

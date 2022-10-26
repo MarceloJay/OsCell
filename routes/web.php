@@ -22,8 +22,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/create-order', 'OrderController@createOrder')->name('createOrder');
+// Save Order ;
+Route::post('/save-order', 'OrderController@saveOrder')->name('saveOrder');
 
-Route::get('/edit-order', 'OrderController@editOrder')->name('editOrder');
+Route::get('/order-success', 'OrderController@orderSuccess')->name('orderSuccess');
 
 Route::get('/registration/{id}', 'ClientController@registration')->name('registration');
 // Cliente Save ;

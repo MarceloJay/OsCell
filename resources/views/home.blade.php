@@ -17,7 +17,7 @@
             <button id="editar"class="btn btn-outline-secondary btn-lg" type="button">Editar Order</button>
         </a>
         <a class="nav-link" href="{{ route('editOrder') }}">
-            <button id="deletar"class="btn btn-outline-danger btn-lg" type="button">Apagar Order</button>
+            <button id="deletar"class="btn btn-outline-danger btn-lg" type="button">Finalizar Order</button>
         </a>
     </div>
 </div>
@@ -27,17 +27,12 @@
         background-color: var(--background-default);
     }
     .container {
-        margin-left: 310px;
-        /* margin-top: -600px; */        
+        margin-left: 310px;      
         position:absolute; 
         top:30%;
         left:40%;
         transform: translate(-50%, -50%);
     }
-    /* .btn-order {
-        margin-left: 50px;
-        margin-top: -960px;
-    } */
     .btn {
         font-size: 30px;
         float: right;
