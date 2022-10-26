@@ -52,9 +52,9 @@ class ClientController extends Controller
     
     public function searchClient(String $name)
     {
-        $client = DB::table('client')->where('name', 'like', '%' . $name . '%')->get();
+        $client []= DB::table('client')->where('name', 'like', '%' . $name . '%')->get();
         $client = json_decode(json_encode($client[0]), true);
-
+        // dd($client);
         return $client;
     }
 }
