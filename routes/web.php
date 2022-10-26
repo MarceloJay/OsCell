@@ -22,6 +22,8 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/create-order', 'OrderController@createOrder')->name('createOrder');
+// Redirect Home to Edit Order ;
+Route::post('/edit-order', 'OrderController@editOrder')->name('editOrder');
 // Save Order ;
 Route::post('/save-order', 'OrderController@saveOrder')->name('saveOrder');
 
