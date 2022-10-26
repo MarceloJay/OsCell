@@ -30,7 +30,7 @@ class ClientController extends Controller
      */
     public function editClient()
     {
-        return view('order-edit');
+        return view('');
     }
 
     public function clientSave(Request $request) {
@@ -43,8 +43,10 @@ class ClientController extends Controller
             $client = json_decode(json_encode($client), true);
         } else {
             $client = $data;
+            $client = DB::table('client')->where('document', $document)->get();
+            $client = json_decode(json_encode($client[0]), true);
         }        
-
+        // dd($client);
         return redirect()->route('createOrder', $client);
     }
     

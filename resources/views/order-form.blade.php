@@ -3,11 +3,13 @@
 @section('content')
 @include('layouts.navigation') 
 <div class="container">
-    <table class="table table-striped table-bordered dt-responsive nowrap">
-        <form>
-            <div id="client-selected">
-                <label id="client-text" class="client-selected" for="client-selected"> Cliente :</label>            
-                <h1 class="text-center">{{ $client['name'] }}</h1>
+    <!-- <table class="table table-striped table-bordered dt-responsive nowrap"> -->
+    <form id="order" method="POST" name="order" action="{{ route('saveOrder') }}">
+        <input type="hidden" name="_token" value="<?php echo csrf_token(); ?>">
+            <div id="client-selected">                
+                <label id="client-text" class="client-selected" for="client-selected"> Cliente :</label>
+                <input type="hidden" name="client_id" value="{{ $client['id'] }}"/>                         
+                <h1 class="text-center">{{ $client['name'] }}</h1>                 
             </div> 
             <br>
             <div>            
@@ -24,49 +26,49 @@
                 <div class="col">
                 <div class="form-outline">
                     <label class="form-label" for="form3Example2"> Modelo :</label>
-                    <input type="text" id="form3Example2" class="form-control" />            
+                    <input type="text" id="model" name="model" class="form-control" />            
                 </div>
                 </div>
                 <div class="col">
                 <div class="form-outline">
                     <label class="form-label" for="form3Example2"> Número de Série :</label>
-                    <input type="text" id="form3Example2" class="form-control" />            
+                    <input type="text" id="serial_number" name="serial_number" class="form-control" />            
                 </div>
                 </div>
             </div>
             <!-- Email and phone input -->
-            <form class="was-validated">
                 <div class="mb-3">
                     <label for="validationTextarea">Defeito Relatado pelo Cliente</label>
-                    <textarea class="form-control" id="description"></textarea>
+                    <textarea class="form-control" id="defect_description"name="defect_description"></textarea>
                 </div>
                     <label for="validationTextarea">Status do Aparelho :</label>
                 <div class="custom-control custom-checkbox mb-6">
-                    <form>
-                        <input type="radio" name="liga" id="customControlValidation1" checked>Aparelho liga</input>
-                        <input type="radio" name="liga" id="customControlValidation1">Aparelho não liga</input>
-                    </form>
+                    <!-- <form> -->
+                        <input type="radio" name="device_status" id="on" value="1" checked>Aparelho liga</input>&nbsp;
+                        <input type="radio" name="device_status" id="off"value="0">Aparelho não liga</input>
+                    <!-- </form> -->
                 </div>
-                <label for="validationTextarea">Acessórios :</label>
-                <div class="custom-control custom-radio mb-4">
-                    <form>
-                        <input type="radio" name="capinha" VALUE="op1" > Capinha
-                        <input type="radio" name="chip" VALUE="op2" > Chip
-                        <input type="radio" name="caregador" VALUE="op1" > Carregador
-                        <input type="radio" name="cabo" VALUE="op2" > Cabo
-                    </form>
+                <label>Acessórios :</label><br/>
+                <div class="custom-control custom-radio mb-2">
+                    <input type="checkbox" name="accessories[]" value="cape"> Capinha &nbsp;
+                    <input type="checkbox" name="accessories[]" value="chip"> Chip &nbsp;
+                    <input type="checkbox" name="accessories[]" value="charger"> Carregador &nbsp;
+                    <input type="checkbox" name="accessories[]" value="cable"> Cabo 
                 </div>
-                <div class="custom-control custom-radio mb-3">
-                    <input type="radio" class="custom-control-input" id="customControlValidation3" name="radio-stacked">
-                    <label class="custom-control-label" for="customControlValidation3">Já passou por outra assitência</label>
+                <div class="custom-control custom-radio mb-2">
+                    <!-- <input type="checkbox" id="repaired" name="repaired" value="true"> -->
+                    <input type="hidden" name="repaired" value="0">
+                    <input type="checkbox" name="repaired" value="1">
+                    <!-- <input type="radio" name="repaired" id="repaired" value="true" >Aparelho liga</input> -->
+                    <label for="customControlValidation3">Já passou por outra assitência</label>
                 </div>
 
                 <div class="form-group">
-                    <select class="custom-select" required>
-                    <option value="">Tempo de uso do Aparelho</option>
-                    <option value="1">Um ano</option>
-                    <option value="2">Dois anos</option>
-                    <option value="3">Três anos ou mais..</option>
+                    <label for="validationTextarea">Tempo de uso do Aparelho :</label>
+                    <select class="custom-select" name="used" required>
+                        <option value="1">Um ano</option>
+                        <option value="2">Dois anos</option>
+                        <option value="3">Três anos ou mais..</option>
                     </select>
                     <div class="invalid-feedback">Exemplo de feedback invalido para o select</div>
                 </div>
@@ -76,38 +78,36 @@
                 </div>
 
                 <div class="form-group">
-                    <select class="custom-select" required>
-                        <option value="3">Serviços</option>
-                        <option value="">Trocar tela</option>
-                        <option value="1">Trocar bateria</option>
-                        <option value="2">Reparo na placa</option>
-                        <option value="3">Outros</option>
-                    </select>
-                    <div class="invalid-feedback">Exemplo de feedback invalido para o select</div>
+                    <select class="custom-select" name="requested_service"required>
+                        <option value="1">Trocar tela</option>
+                        <option value="2">Trocar bateria</option>
+                        <option value="3">Reparo na placa</option>
+                        <option value="4">Outros</option>
+                    </select>                    
                 </div>
-                <div>
+                <!-- <div>
                     <label >Foto do Aparelho :</label>
                 </div>
                 <div class="custom-file">
                     <input type="file" class="custom-file-input" id="validatedCustomFile" required>
                     <label class="custom-file-label" for="validatedCustomFile">Escolher arquivo...</label>
-                </div>
-            </form>
+                </div> -->
+            
             
             <!-- Submit button -->'
-            <div>
+            <!-- <div>
                 <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-success">Salvar</button>
+                        <button type="submit" class="btn btn-success">Salvar</button>
                     </div> &nbsp;
                     <div class="btn-group">
                         <button id="btn-save" type="button" class="btn btn-primary">Salvar e Imprimir</button>  
                     </div>   
                 </div>  
-            </div>
-            
+            </div>  -->
+            <button id="btn-save" type="submit" class="btn btn-success btn-block mb-4">Salvar</button'>           
         </form>
-    <table class="table table-striped table-bordered dt-responsive nowrap">
+    <!-- <table class="table table-striped table-bordered dt-responsive nowrap"> -->
 </div>
 
 <style>
@@ -143,6 +143,10 @@
         margin-left: 10px;
         margin-top: 5px;
     }
+    #id {        
+        float: right;
+        margin-right: 20px;
+    }
     h1 {
         font-size: 30px;
     }
@@ -159,37 +163,37 @@
     
 </style> 
 <script>
-    $(document).ready(function() {
-        $('#estado').select2();
-    });
+    // $(document).ready(function() {
+    //     $('#estado').select2();
+    // });
 
-    document.getElementById('btn-save').onclick = function() {
-        var name = $("#plan_app").val();
+    // document.getElementById('btn-save').onclick = function() {
+    //     var name = $("#plan_app").val();
 			
-			var markedCheckbox = document.getElementsByName('check');
-			var ids = [];
-			var counts = [];
-			for (var checkbox of markedCheckbox) {
-				if (checkbox.checked) {					
-					ids.push(checkbox.id.replace('check_',''));	
-				} else {
-					counts.push(checkbox.id.replace('check_',''));	
-				}	
-			}
+	// 		var markedCheckbox = document.getElementsByName('check');
+	// 		var ids = [];
+	// 		var counts = [];
+	// 		for (var checkbox of markedCheckbox) {
+	// 			if (checkbox.checked) {					
+	// 				ids.push(checkbox.id.replace('check_',''));	
+	// 			} else {
+	// 				counts.push(checkbox.id.replace('check_',''));	
+	// 			}	
+	// 		}
 
-			$.ajax({
-				headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-				url: 'actionUpdateSave',
-				type: 'POST',
-				data: {counts,ids},
-				success: function (response) {
-					console.log("actionSave response: " + response);
-				},
-				error: function (err){
-					console.log("error:", err);
-				}
+	// 		$.ajax({
+	// 			headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+	// 			url: 'actionUpdateSave',
+	// 			type: 'POST',
+	// 			data: {counts,ids},
+	// 			success: function (response) {
+	// 				console.log("actionSave response: " + response);
+	// 			},
+	// 			error: function (err){
+	// 				console.log("error:", err);
+	// 			}
 				
-			});
-		}
+	// 		});
+	// 	}
 </script>   
 @endsection
