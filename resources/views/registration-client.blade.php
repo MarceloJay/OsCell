@@ -18,10 +18,7 @@
             <div class="col">
                 <div class="form-outline mb-2">
                     <label class="form-label">Seleciona o Cliente :</label>
-                    <select class="custom-select">                        
-                        <option id="client-select" selected>Seleciona o Cliente</option>
-                        <option value=""></option>
-                    </select>           
+                    <select id="cust-select"class="custom-select"></select>           
                 </div>
             </div>
         </div>
@@ -158,7 +155,9 @@
 
 <script>
     // $(document).ready(function() {
-    //     $('#estado').select2();
+    //     $("#client-select").change(function(){
+    //         buscarOndeComprar();
+    //     });
     // });
     
 
@@ -174,31 +173,51 @@
             type: 'GET',
             data: {name},
             success: function (response) {
-                console.log("searchClient response: " + response.document);
-                // document.getElementById('search-button').onclick = function() {
-                //     var options = `<option value=""></option>`
-                // }
-                // alert(nameClient);name
-                document.getElementById('client-select').textContent = response.name;
-                document.getElementById('name').value = response.name;
-                document.getElementById('document').value = response.document;
-                document.getElementById('email').value = response.email;
-                document.getElementById('phone').value = response.phone;
-                document.getElementById('contact').value = response.contact;
-                document.getElementById('address').value = response.address;
-                document.getElementById('city').value = response.city;
-                document.getElementById('state').value = response.state;
-                document.getElementById('cep').value = response.cep;  
-                              
+
+                var select = document.getElementById('cust-select');
+                for(var i = 0; i < response.length; i++) {
+                    var opt = response[i].name;                    
+                    var el = document.createElement("option");
+                    el.textContent = opt;
+                    el.value = opt;
+                    select.appendChild(el);
+                    if (document.getElementById('name').value == "") {
+                        document.getElementById('name').value = opt;
+                        document.getElementById('document').value = response[i].document;
+                        document.getElementById('email').value = response[i].email;
+                        document.getElementById('phone').value = response[i].phone;
+                        document.getElementById('contact').value = response[i].contact;
+                        document.getElementById('address').value = response[i].address;
+                        document.getElementById('city').value = response[i].city;
+                        document.getElementById('state').value = response[i].state;
+                        document.getElementById('cep').value = response[i].cep;
+                    }
+                }
+                document.getElementById('cust-select').onclick = function() {
+                    var $option = $(this).find('option:selected');
+                    var value = $option.val();
+                    var text = $option.text();
+                    for(var i = 0; i < response.length; i++) {
+                        var opt = response[i].name;
+                        if (opt == text) {
+                            document.getElementById('name').value = response[i].name;
+                            document.getElementById('document').value = response[i].document;
+                            document.getElementById('email').value = response[i].email;
+                            document.getElementById('phone').value = response[i].phone;
+                            document.getElementById('contact').value = response[i].contact;
+                            document.getElementById('address').value = response[i].address;
+                            document.getElementById('city').value = response[i].city;
+                            document.getElementById('state').value = response[i].state;
+                            document.getElementById('cep').value = response[i].cep;
+                        }
+                    }
+                }
             },
             error: function (err){
                 console.log("error:", err);
             }
         });
     }
-
-        
-    // }
 
 </script>   
 @endsection
