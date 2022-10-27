@@ -18,10 +18,7 @@
             <div class="col">
                 <div class="form-outline mb-2">
                     <label class="form-label">Seleciona o Cliente :</label>
-                    <select id="cust-select"class="custom-select">                        
-                        <!-- <option id="client-select" selected>Seleciona o Cliente</option> -->
-                        <!-- <option value=""></option> -->
-                    </select>           
+                    <select id="cust-select"class="custom-select"></select>           
                 </div>
             </div>
         </div>
