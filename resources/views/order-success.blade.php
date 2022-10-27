@@ -30,13 +30,7 @@
                 <label >Selecione o Serviços :</label>
             </div>
             <div class="form-group">
-                <select id="service"class="custom-select" name="requested_service" required>
-                    <option selected>Choose...</option>
-                    <option value="Trocar tela">Trocar tela</option>
-                    <option value="Trocar bateria">Trocar bateria</option>
-                    <option value="Reparo na placa">Reparo na placa</option>
-                    <option value="Outros">Outros</option>                        
-                </select> 
+                <select id="serviceSelect"class="custom-select" name="requested_service" required></select> 
                 
                 <button type="button" id="addService"class="btn btn-primary" data-mdb-toggle="modal" 
                     data-mdb-target="#exampleModal">Add Serviço
@@ -62,14 +56,7 @@
                 <label >Selecione as peças :</label>
             </div>
                 <div class="form-group">
-                    <select id="service"class="custom-select" name="requested_service" required>
-                        <option selected>Choose...</option>
-                        <option value="Trocar tela">Frontal Iphone7</option>
-                        <option value="Trocar bateria">Frontal SamsungA30</option>
-                        <option value="Reparo na placa">Bateria Iphone7</option>
-                        <option value="Outros">Outros</option>                        
-                    </select> 
-                    
+                    <select id="partSelect"class="custom-select" name="requested_service" required></select>                     
                     <button type="button" id="addParts"class="btn btn-primary" data-mdb-toggle="modal" 
                         data-mdb-target="#exampleModal">Add Peças
                     </button>
@@ -97,19 +84,21 @@
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Adicionar Peças</h5>
-                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                    <button id="close" type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                     <div class="modal-body">
+                        <span role="alert" id="nameError" aria-hidden="true" style="display: none;">Service already registered</span>
+                        <div id="alert" class="alert alert-danger" role="alert" style="display: none;">Service already registered</div>
                         <label class="form-label" for="form3Example2">Serviço :</label>
-                        <input type="text" id="ask" name="ask" class="form-control"/> 
+                        <input type="text" id="ask-service" name="ask" class="form-control"/>                         
                         <label class="form-label" for="form3Example2">Valor :</label>
                         <input type="text" id="sale-value" name="sale-value" class="form-control"/> 
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn-close" data-mdb-dismiss="modal">
-                        Close
-                    </button>
-                        <button type="button" class="btn-save">Save changes</button>
+                        <button id="close" type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                        <button id="save" type="button" class="btn btn-success">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -121,7 +110,9 @@
                 <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Adicionar Peças</h5>
-                    <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+                    <button id="close" type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                     <div class="modal-body">
                         <label class="form-label" for="form3Example2">Peça :</label>
@@ -138,10 +129,8 @@
                         <input type="text" id="inventory" name="inventory" class="form-control"/> 
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn-close" data-mdb-dismiss="modal">
-                        Close
-                    </button>
-                        <button type="button" class="btn-save">Save changes</button>
+                        <button id="close" type="button" class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
+                        <button id="save1" type="button" class="btn btn-success">Save changes</button>
                     </div>
                 </div>
             </div>
@@ -156,20 +145,98 @@
 </div>    
 <!-- MDB -->
 <script>
-    document.getElementById('addService').onclick = function() {
-        alert('Modal');
-        $('#addService1').modal('show')
-    }
-    document.getElementById('addParts').onclick = function() {
-        alert('Modal');
-        $('#addParts1').modal('show')
-    }
+    
+    var serviccess = <?php echo json_encode($service); ?>; 
+    var select = document.getElementById('serviceSelect');
+    for(var i = 0; i < serviccess.length; i++) {
+        var opt = serviccess[i].description;                    
+        var el = document.createElement("option");
+        el.textContent = opt;
+        el.value = opt;
+        select.appendChild(el);
+    }    
+    
     document.getElementById('selectServiçe').onclick = function() {
-        alert('Serviçe');
-        service = document.getElementById('service').value;
+        service = document.getElementById('serviceSelect').value;
         document.getElementById('serv').value = service;
-        alert(serviçe);add
     }
+
+    document.getElementById('addService').onclick = function() {        
+        $('#addService1').modal('show');
+    }
+
+    document.getElementById('addParts').onclick = function() {
+        $('#addParts1').modal('show');
+    } 
+
+    const btnsx = document.querySelectorAll('.btn-close'); 
+    const btns = document.querySelectorAll('.btn-secondary');    
+    for (const btn of btnsx) {
+        btn.addEventListener('click', function() {
+            $('#addService1').modal('hide');
+            $('#addParts1').modal('hide');
+        });
+    } 
+
+    for (const btn of btns) {
+        btn.addEventListener('click', function() {
+            $('#addService1').modal('hide');
+            $('#addParts1').modal('hide');
+        });
+    } 
+    
+    const save = document.getElementById('save');//"Save changes"
+    const savex = document.querySelectorAll('.btn-success');
+    
+    console.log(savex);
+    for (const save of savex) { 
+        if (save.id === 'save') {
+            save.addEventListener('click', function() {
+                const nameError = document.getElementById("alert");
+                nameError.setAttribute("style", "display:none");
+                
+                $.ajax({
+                    headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                    url: "{{ url('saveService') }}",
+                    type: 'POST',
+                    data: { 
+                        description : document.getElementById('ask-service').value, 
+                        value : document.getElementById('sale-value').value
+                    },
+                    success: function (response) {
+                            console.log(response);
+                            
+                            if (response == "registered"){
+                                nameError.setAttribute("style", "display:block");
+                            } 
+                            
+                            // $("#alert").style("display:block");
+                        },
+                        error: function (err){
+                            console.log("error:", err);
+                    }
+                });    
+            });
+        }
+        if (save.id === 'save1') {
+            save.addEventListener('click', function() {
+                var servicess = {
+                    ask : document.getElementById('ask-service').value,
+                    brand : document.getElementById('brand').value,
+                    model : document.getElementById('model').value,
+                    purchase_value : document.getElementById('purchase value').value,
+                    sale_value : document.getElementById('sale-value').value,
+                    inventory : document.getElementById('inventory').value
+                };
+                console.log(ask);
+            });
+        }
+        
+    }
+    
+    
+    
+    
     
     
 </script>

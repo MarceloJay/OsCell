@@ -27,16 +27,13 @@ Route::get('/create-order', 'OrderController@createOrder')->name('createOrder');
 Route::post('/edit-order', 'OrderController@editOrder')->name('editOrder');
 // Save Order ;
 Route::post('/save-order', 'OrderController@saveOrder')->name('saveOrder');
-
+// Order Success ;
 Route::get('/order-success', 'OrderController@orderSuccess')->name('orderSuccess');
-
+// Register Users ;
 Route::get('/registration/{id}', 'ClientController@registration')->name('registration');
 // Cliente Save ;
 Route::post('/clientSave', 'ClientController@clientSave')->name('clientSave');
 // Search Client ;
 Route::get('searchClient/{name}', 'ClientController@searchClient')->name('searchClient');
-
-// Route::prefix('/registration')->group(function () {
-//     Route::get('', 'ClientController@registration')->name('registration');
-//     Route::get('/searchClient/{name}', 'ClientController@searchClient')->name('searchClient');
-// });
+// Save Serviccess ;
+Route::post('/saveService', 'OrderController@saveService')->name('saveService');

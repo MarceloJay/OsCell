@@ -84,27 +84,9 @@
                         <option value="3">Reparo na placa</option>
                         <option value="4">Outros</option>
                     </select>                    
-                </div>
-                <!-- <div>
-                    <label >Foto do Aparelho :</label>
-                </div>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-                    <label class="custom-file-label" for="validatedCustomFile">Escolher arquivo...</label>
-                </div> -->
+                </div>           
             
-            
-            <!-- Submit button -->'
-            <!-- <div>
-                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                    <div class="btn-group">
-                        <button type="submit" class="btn btn-success">Salvar</button>
-                    </div> &nbsp;
-                    <div class="btn-group">
-                        <button id="btn-save" type="button" class="btn btn-primary">Salvar e Imprimir</button>  
-                    </div>   
-                </div>  
-            </div>  -->
+            <!-- Submit button -->
             <button id="btn-save" type="submit" class="btn btn-success btn-block mb-4">Salvar</button'>           
         </form>
     <!-- <table class="table table-striped table-bordered dt-responsive nowrap"> -->
@@ -163,37 +145,5 @@
     
 </style> 
 <script>
-    // $(document).ready(function() {
-    //     $('#estado').select2();
-    // });
-
-    // document.getElementById('btn-save').onclick = function() {
-    //     var name = $("#plan_app").val();
-			
-	// 		var markedCheckbox = document.getElementsByName('check');
-	// 		var ids = [];
-	// 		var counts = [];
-	// 		for (var checkbox of markedCheckbox) {
-	// 			if (checkbox.checked) {					
-	// 				ids.push(checkbox.id.replace('check_',''));	
-	// 			} else {
-	// 				counts.push(checkbox.id.replace('check_',''));	
-	// 			}	
-	// 		}
-
-	// 		$.ajax({
-	// 			headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-	// 			url: 'actionUpdateSave',
-	// 			type: 'POST',
-	// 			data: {counts,ids},
-	// 			success: function (response) {
-	// 				console.log("actionSave response: " + response);
-	// 			},
-	// 			error: function (err){
-	// 				console.log("error:", err);
-	// 			}
-				
-	// 		});
-	// 	}
 </script>   
 @endsection
