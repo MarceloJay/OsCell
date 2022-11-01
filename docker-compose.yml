@@ -1,0 +1,58 @@
+version: '3'
+services:
+    web-oscell:
+        container_name: "nginx-oscell"
+        image: nginx
+        volumes:
+            - ./nginx/site.conf:/etc/nginx/conf.d/default.conf
+            - ./webroot:/var/www/html
+            - ./nginx/logs:/var/log/nginx
+        ports:
+            - 8440:80
+        restart: always
+        depends_on:
+            - php7-oscell
+            - mysql-oscell
+        # links:
+        #     - php7-oscell
+        networks:
+            - "oscell-net"
+    php7-oscell:
+        container_name: "php7-oscell"
+        build: ./php7
+        image: fsphp7:4
+        restart: always
+        volumes:
+            - ./php7/php.ini:/usr/local/etc/php/conf.d/php.ini
+            - ./php7/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini
+            - ./webroot:/var/www/html
+        networks:
+            - "oscell-net"
+    mysql-oscell: 
+        image: mysql:8.0
+        container_name: "mysql-oscell"
+        restart: always
+        environment:
+            MYSQL_DATABASE: 'test'
+            MYSQL_USER: 'user'
+            MYSQL_PASSWORD: '3371Jay#'
+            MYSQL_ROOT_PASSWORD: '3371Jay#'
+        volumes:
+            - ./mysql:/var/lib/mysql
+        ports:
+            - "3307:3306"
+        networks:
+            - "oscell-net"        
+    # composer:
+    #     container_name: "composer"
+    #     image: composer
+    #     volumes:
+    #         - ./webroot:/app
+    #     command: install
+
+# volumes:
+#   data:
+#     driver: local
+networks:
+  oscell-net:
+    driver: bridge
